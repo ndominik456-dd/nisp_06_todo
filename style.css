@@ -1,0 +1,12 @@
+body {
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    text-align: center; /* wyśrodkowanie */
+}
+
+li {
+    border: 1px solid black; /* obramowanie */
+    margin: 5px; /* odstępy */
+    padding: 5px;
+    list-style: none; /* usuwa kropki */
+}
