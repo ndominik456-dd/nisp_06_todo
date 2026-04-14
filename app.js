@@ -1,26 +1,36 @@
-let input = document.getElementById('in');
-let button = document.getElementById('btn');
-let list = document.getElementById('task-list');
+class TodoApp {
+    constructor() {
+        this.input = document.getElementById('in');
+        this.list = document.getElementById('task-list');
+        this.button = document.getElementById('btn');
 
-button.onclick = () => {
-    const li = document.createElement('li');
-    
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.onchange = () => {
-        li.style.textDecoration = checkbox.checked ? 'line-through' : 'none';
-    };
+        // Podpięcie zdarzenia kliknięcia
+        this.button.onclick = () => this.addTask();
+    }
 
-    const delBtn = document.createElement('button');
-    delBtn.textContent = 'Usuń';
-    delBtn.onclick = () => li.remove();
+    addTask() {
+        const text = this.input.value;
+        if (!text) return;
 
-    li.appendChild(checkbox);
-    li.append(" " + input.value + " ");
-    li.appendChild(delBtn);
-    
-    list.appendChild(li);
-    input.value = '';
-};
+        const li = document.createElement('li');
 
+        // Checkbox
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.onchange = () => {
+            li.style.textDecoration = checkbox.checked ? 'line-through' : 'none';
+        };
 
+        // Przycisk usuń
+        const delBtn = document.createElement('button');
+        delBtn.textContent = 'Usuń';
+        delBtn.onclick = () => li.remove();
+
+        li.append(checkbox, " " + text + " ", delBtn);
+        this.list.appendChild(li);
+        this.input.value = '';
+    }
+}
+
+// Inicjalizacja aplikacji
+new TodoApp();
